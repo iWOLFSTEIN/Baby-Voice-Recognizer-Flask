@@ -5,10 +5,9 @@ import librosa
 import numpy as np
 import os
 
+from keys import AUTH_KEY
+
 app = Flask(__name__)
-
-auth_key = "918ed872dd2e5d7a083d415b178678fc"
-
 
 class CNN_Baby(nn.Module):
     def __init__(self):
@@ -48,7 +47,7 @@ def get_label_index(tensor_pred):
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    if "auth" not in request.headers or request.headers["auth"] != auth_key:
+    if "auth" not in request.headers or request.headers["auth"] != AUTH_KEY:
         return jsonify({"error": "Invalid auth key"}), 401
 
     if "file" not in request.files:
