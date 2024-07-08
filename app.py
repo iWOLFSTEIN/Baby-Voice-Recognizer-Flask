@@ -9,6 +9,7 @@ from keys import AUTH_KEY
 
 app = Flask(__name__)
 
+
 class CNN_Baby(nn.Module):
     def __init__(self):
         super(CNN_Baby, self).__init__()
@@ -81,4 +82,4 @@ def predict():
 if __name__ == "__main__":
     if not os.path.exists("./uploads"):
         os.makedirs("./uploads")
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
