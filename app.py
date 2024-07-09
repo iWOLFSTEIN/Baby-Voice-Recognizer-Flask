@@ -1,4 +1,4 @@
-from wsgiref.simple_server import WSGIServer
+from gevent.pywsgi import WSGIServer
 from flask import Flask, request, jsonify
 import torch
 import torch.nn as nn
