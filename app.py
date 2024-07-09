@@ -1,3 +1,4 @@
+from wsgiref.simple_server import WSGIServer
 from flask import Flask, request, jsonify
 import torch
 import torch.nn as nn
@@ -82,4 +83,6 @@ def predict():
 if __name__ == "__main__":
     if not os.path.exists("./uploads"):
         os.makedirs("./uploads")
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    # app.run(host="0.0.0.0", port=5000, debug=True)
+    http_server = WSGIServer(('', 5000), app)
+    http_server.serve_forever()
